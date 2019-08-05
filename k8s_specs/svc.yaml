@@ -1,0 +1,21 @@
+---
+apiVersion: v1
+kind: Service
+metadata:
+  annotations:
+    kubectl.kubernetes.io/last-applied-configuration: |
+      {"apiVersion":"v1","kind":"Service","metadata":{"annotations":{},"name":"flask-rest-api-swagger","namespace":"daimler"},"spec":{"ports":[{"name":"http","port":8888,"targetPort":8888}],"selector":{"app":"flask-rest-api-swagger"}}}
+  name: flask-rest-api-swagger
+  namespace: daimler
+spec:
+  externalTrafficPolicy: Cluster
+  ports:
+  - name: http
+    nodePort: 31722
+    port: 31722
+    protocol: TCP
+    targetPort: 31722
+  selector:
+    app: flask-rest-api-swagger
+  sessionAffinity: None
+  type: NodePort
