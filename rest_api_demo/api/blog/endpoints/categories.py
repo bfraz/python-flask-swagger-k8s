@@ -23,7 +23,6 @@ class CategoryCollection(Resource):
         categories = Category.query.all()
         return categories
 
-
 @ns.route('/<int:id>')
 @api.response(404, 'Category not found.')
 class CategoryItem(Resource):
@@ -31,7 +30,7 @@ class CategoryItem(Resource):
     @api.marshal_with(category_with_posts)
     def get(self, id):
         """
-        Returns a foo category with a list of posts.
+        Returns a category with a list of posts.
         """
         return Category.query.filter(Category.id == id).one()
 
@@ -39,7 +38,7 @@ class CategoryItem(Resource):
     @api.response(204, 'Category successfully deleted.')
     def delete(self, id):
         """
-        Deletes blog category.
+        Deletes a blog category.
         """
         delete_category(id)
         return None, 204
